@@ -7,4 +7,5 @@ export type RootStackParamList = {
   CarDetails: undefined;
   MyCars: undefined;
   Splash: undefined;
+  SignIn: undefined;
 };

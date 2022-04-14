@@ -10,6 +10,7 @@ import {SchedulingDetails} from '../screens/SchedulingDetails';
 import {SchedulingComplete} from '../screens/SchedulingComplete';
 import {MyCars} from '../screens/MyCars';
 import {Splash} from '../screens/Splash';
+import {SignIn} from '../screens/SignIn';
 
 import {RootStackParamList} from '../utils/RootStackParams';
 
@@ -17,8 +18,9 @@ const {Navigator, Screen} = createStackNavigator<RootStackParamList>();
 
 export function StackRoutes() {
   return (
-    <Navigator initialRouteName="Splash">
-      <Screen name="Splash" component={Splash} options={{headerShown: false}} />
+    <Navigator initialRouteName="SignIn">
+      {/* <Screen name="Splash" component={Splash} options={{headerShown: false}} /> */}
+      <Screen name="SignIn" component={SignIn} options={{headerShown: false}} />
       <Screen 
         name="Home" 
         component={Home} 
