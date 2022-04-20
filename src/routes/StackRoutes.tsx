@@ -7,10 +7,12 @@ import {Home} from '../screens/Home';
 import {CarDetails} from '../screens/CarDetails';
 import {Scheduling} from '../screens/Scheduling';
 import {SchedulingDetails} from '../screens/SchedulingDetails';
-import {SchedulingComplete} from '../screens/SchedulingComplete';
+import {Confirmation} from '../screens/Confirmation';
 import {MyCars} from '../screens/MyCars';
 import {Splash} from '../screens/Splash';
 import {SignIn} from '../screens/SignIn';
+import {SignUpFirstStep} from '../screens/SignUp/SignUpFirstStep';
+import {SignUpSecondStep} from '../screens/SignUp/SignUpSecondStep';
 
 import {RootStackParamList} from '../utils/RootStackParams';
 
@@ -21,6 +23,8 @@ export function StackRoutes() {
     <Navigator initialRouteName="SignIn">
       {/* <Screen name="Splash" component={Splash} options={{headerShown: false}} /> */}
       <Screen name="SignIn" component={SignIn} options={{headerShown: false}} />
+      <Screen name="SignUpFirstStep" component={SignUpFirstStep} options={{headerShown: false}} />
+      <Screen name="SignUpSecondStep" component={SignUpSecondStep} options={{headerShown: false}} />
       <Screen 
         name="Home" 
         component={Home} 
@@ -48,8 +52,8 @@ export function StackRoutes() {
         options={{headerShown: false}}
       />
       <Screen
-        name="SchedulingComplete"
-        component={SchedulingComplete}
+        name="Confirmation"
+        component={Confirmation}
         options={{headerShown: false}}
       />
 

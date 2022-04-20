@@ -8,4 +8,7 @@ export type RootStackParamList = {
   MyCars: undefined;
   Splash: undefined;
   SignIn: undefined;
+  SignUpFirstStep: undefined;
+  SignUpSecondStep: undefined;
+  Confirmation: undefined;
 };
