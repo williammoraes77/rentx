@@ -1,5 +1,6 @@
 export type RootStackParamList = {
   Home: undefined;
+  Profile: undefined;
   Teste: undefined;
   Scheduling: undefined;
   SchedulingComplete: undefined;

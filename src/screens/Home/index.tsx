@@ -1,27 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, BackHandler} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 import {useNavigation} from '@react-navigation/native';
 import {Ionicons} from '@expo/vector-icons';
 import {useTheme} from 'styled-components';
-import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
+import {RectButton, PanGestureHandler} from 'react-native-gesture-handler';
 
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   useAnimatedGestureHandler,
-  withSpring 
+  withSpring,
 } from 'react-native-reanimated';
 
 const ButtonAnimated = Animated.createAnimatedComponent(RectButton);
 
-import {
-  Container,
-  Header,
-  HeaderContent,
-  TotalCars,
-  CarList,
-} from './styles';
+import {Container, Header, HeaderContent, TotalCars, CarList} from './styles';
 
 import {api} from '../../services/api';
 import {CarDTO} from '../../dtos/CarDTO';
@@ -38,30 +32,27 @@ export function Home() {
   const theme = useTheme();
 
   const positionY = useSharedValue(0);
-  const positionX  = useSharedValue(0);
+  const positionX = useSharedValue(0);
 
   const myCarButtonsStyle = useAnimatedStyle(() => {
-     return {
-        transform: [
-          {translateX: positionX.value},
-          {translateY: positionY.value},
-        ]
-    }
+    return {
+      transform: [{translateX: positionX.value}, {translateY: positionY.value}],
+    };
   });
 
   const onGestureEvent = useAnimatedGestureHandler({
-    onStart(_, ctx: any){
-      ctx.positionX = positionX.value
-      ctx.positionY = positionY.value
+    onStart(_, ctx: any) {
+      ctx.positionX = positionX.value;
+      ctx.positionY = positionY.value;
     },
-    onActive(event, ctx: any){
+    onActive(event, ctx: any) {
       positionX.value = event.translationX + ctx.positionX;
       positionY.value = event.translationY + ctx.positionY;
     },
-    onEnd(){
+    onEnd() {
       // positionX.value = withSpring(0);
       // positionY.value = withSpring(0);
-    }
+    },
   });
 
   function handleCarDetails(car: CarDTO) {
@@ -87,12 +78,6 @@ export function Home() {
     fetchCars();
   }, []);
 
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', () =>  {
-      return true;
-    })
-  },[])
-
   return (
     <Container>
       <Header>
@@ -112,8 +97,8 @@ export function Home() {
           )}
         />
       )}
-
-      <PanGestureHandler onGestureEvent={onGestureEvent}>
+      {/* Botao flutuante */}
+      {/* <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View
           style={[
             myCarButtonsStyle,
@@ -121,14 +106,11 @@ export function Home() {
               position: 'absolute',
               bottom: 13,
               right: 22,
-            }
-          ]}
-        >
-          <ButtonAnimated 
-          onPress={handleOpenMyCars} 
-          style={[styles.button, {backgroundColor: theme.colors.main}]}
-          
-          >
+            },
+          ]}>
+          <ButtonAnimated
+            onPress={handleOpenMyCars}
+            style={[styles.button, {backgroundColor: theme.colors.main}]}>
             <Ionicons
               name="car-sport-sharp"
               size={RFValue(32)}
@@ -136,7 +118,7 @@ export function Home() {
             />
           </ButtonAnimated>
         </Animated.View>
-      </PanGestureHandler>
+      </PanGestureHandler> */}
     </Container>
   );
 }
@@ -147,7 +129,6 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     justifyContent: 'center',
-    alignItems: 'center'
-
-  }
+    alignItems: 'center',
+  },
 });

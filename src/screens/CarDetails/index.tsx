@@ -33,7 +33,7 @@ import {Button} from '../../components/Button';
 import {CarDTO} from '../../dtos/CarDTO';
 
 import {getAccessoryIcon} from '../../utils/getAccessoryIcon';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 interface Params {
   car: CarDTO;
@@ -57,20 +57,15 @@ export function CarDetails() {
         scrollY.value,
         [0, 200],
         [220, 70],
-        Extrapolate.CLAMP
+        Extrapolate.CLAMP,
       ),
-    }
+    };
   });
 
-  const sliderCarsStyleAnimation = useAnimatedStyle(() =>{
+  const sliderCarsStyleAnimation = useAnimatedStyle(() => {
     return {
-      opacity: interpolate(
-        scrollY.value,
-        [0, 150],
-        [1, 0],
-        Extrapolate.CLAMP
-      )
-    }
+      opacity: interpolate(scrollY.value, [0, 150], [1, 0], Extrapolate.CLAMP),
+    };
   });
 
   function handleConfirmRental() {
@@ -87,28 +82,26 @@ export function CarDetails() {
         style={[
           headerStyleAnimation,
           styles.header,
-          {backgroundColor: theme.colors.background_secondary}
-        ]}
-      >
+          {backgroundColor: theme.colors.background_secondary},
+        ]}>
         <Header>
-          <BackButton onPress={handleBack}/>
+          <BackButton onPress={handleBack} />
         </Header>
         <CarImages>
           <Animated.View style={sliderCarsStyleAnimation}>
-              <ImageSlider imagesUrl={car.photos} />
+            <ImageSlider imagesUrl={car.photos} />
           </Animated.View>
         </CarImages>
       </Animated.View>
 
       <Animated.ScrollView
-       contentContainerStyle = {{
-         paddingHorizontal: 24,
-         paddingTop: getStatusBarHeight() + 160,
-       }}
-       showsVerticalScrollIndicator={false}
-       onScroll={scrollHandler}
-       scrollEventThrottle={16}
-      >
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          paddingTop: getStatusBarHeight() + 160,
+        }}
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}>
         <Details>
           <Description>
             <Brand>{car.brand}</Brand>
@@ -116,8 +109,8 @@ export function CarDetails() {
           </Description>
 
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
 
@@ -154,9 +147,9 @@ const styles = StyleSheet.create({
   header: {
     position: 'absolute',
     overflow: 'hidden',
-    zIndex: 1
+    zIndex: 1,
   },
   back: {
-    marginTop: 24 
-  }
-})
+    marginTop: 24,
+  },
+});
