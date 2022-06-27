@@ -1,66 +1,71 @@
+import { Feather } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { TextInputProps } from 'react-native';
-import {useTheme} from 'styled-components';
-import {Feather} from '@expo/vector-icons';
 import { BorderlessButton } from 'react-native-gesture-handler';
-
+import { useTheme } from 'styled-components';
 import {
   Container,
-  InputText,
   IconContainer,
+  InputText
 } from './styles';
+
 
 interface Props extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>['name'];
   value?: string;
 }
 
-export function PasswordInput({iconName, value, ...rest} : Props){
+export function PasswordInput({
+  iconName,
+  value,
+  ...rest
+}: Props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
-
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
   const theme = useTheme();
 
-  function handleInputFocus(){
+  function handleInputFocus() {
     setIsFocused(true);
   }
 
-  function handleInputBlur(){
+  function handleInputBlur() {
     setIsFocused(false);
-    setIsFilled(!!value);
+    setIsFilled(!!value)
   }
 
-  function handlePasswordVisibilityChange(){
+  function handlePasswordVisibilityChange() {
     setIsPasswordVisible(prevState => !prevState);
   }
+
 
   return (
     <Container>
       <IconContainer isFocused={isFocused}>
-        <Feather 
+        <Feather
           name={iconName}
           size={24}
           color={(isFocused || isFilled) ? theme.colors.main : theme.colors.text_detail}
         />
       </IconContainer>
-      
-      <InputText 
+
+      <InputText
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         secureTextEntry={isPasswordVisible}
+        autoCorrect={false}
         isFocused={isFocused}
         {...rest}
       />
 
       <BorderlessButton onPress={handlePasswordVisibilityChange}>
         <IconContainer isFocused={isFocused}>
-          <Feather 
-              name={isPasswordVisible ? 'eye' : 'eye-off'}
-              size={24}
-              color={theme.colors.text_detail}
-            />
+          <Feather
+            name={isPasswordVisible ? 'eye' : 'eye-off'}
+            size={24}
+            color={theme.colors.text_detail}
+          />
         </IconContainer>
       </BorderlessButton>
     </Container>

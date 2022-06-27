@@ -1,18 +1,31 @@
 import React from 'react';
-import {RFValue} from 'react-native-responsive-fontsize';
-import {SvgProps} from 'react-native-svg';
+import { SvgProps } from 'react-native-svg';
+import { useTheme } from 'styled-components';
+import {
+  Container,
+  Name
+} from './styles';
 
-import {Container, Name} from './styles';
 
 interface Props {
   name: string;
-  icon: React.FC<SvgProps>;
+  icon: React.FC<SvgProps>
 }
 
-export function Accessory({name, icon: Icon}: Props) {
+export function Accessory({
+  name,
+  icon: Icon,
+  ...rest
+}: Props) {
+  const theme = useTheme();
+
   return (
-    <Container>
-      <Icon width={RFValue(32)} height={RFValue(32)} />
+    <Container {...rest}>
+      <Icon
+        width={32}
+        height={32}
+        fill={theme.colors.header}
+      />
       <Name>{name}</Name>
     </Container>
   );

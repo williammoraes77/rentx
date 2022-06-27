@@ -1,10 +1,12 @@
 import React from 'react';
-import {RectButtonProps} from 'react-native-gesture-handler';
-import {CarDTO} from '../../dtos/CarDTO';
+import { RectButtonProps } from 'react-native-gesture-handler';
+
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
+import { Car as ModelCar } from '../../database/model/Car';
 
 import {
   Container,
-  Datails,
+  Details,
   Brand,
   Name,
   About,
@@ -12,20 +14,20 @@ import {
   Period,
   Price,
   Type,
-  CarImage,
-} from './styles';
+  CarImage
+} from './style';
 
-import {getAccessoryIcon} from '../../utils/getAccessoryIcon';
 
-interface Props extends RectButtonProps {
-  data: CarDTO;
+interface Props extends RectButtonProps{
+  data: ModelCar;
 }
 
-export function Car({data, ...rest}: Props) {
+export function Car({ data, ...rest } : Props){
   const MotorIcon = getAccessoryIcon(data.fuel_type);
+
   return (
     <Container {...rest}>
-      <Datails>
+      <Details>
         <Brand>{data.brand}</Brand>
         <Name>{data.name}</Name>
 
@@ -39,9 +41,12 @@ export function Car({data, ...rest}: Props) {
             <MotorIcon />
           </Type>
         </About>
-      </Datails>
+      </Details>
 
-      <CarImage source={{uri: data.thumbnail}} resizeMode="contain" />
+      <CarImage 
+        source={{ uri: data.thumbnail }} 
+        resizeMode="contain"
+      />
     </Container>
   );
 }

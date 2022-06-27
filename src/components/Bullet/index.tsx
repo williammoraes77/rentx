@@ -4,12 +4,12 @@ import {
   Container
 } from './styles';
 
-interface BulletProps {
+interface Props {
   active?: boolean;
 }
 
-export function Bullet({ active=false }:BulletProps){
+export function Bullet({ active = false }: Props){
   return (
-    <Container active={active}/>
+    <Container active={active} />
   );
-} 
+}

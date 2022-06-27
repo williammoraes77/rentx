@@ -18,4 +18,10 @@ target 'rentx' do
   #     flipper_post_install(installer)
   #   end
   # end
+
+  
+
+  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi', :modular_headers => true
+  
+
 end

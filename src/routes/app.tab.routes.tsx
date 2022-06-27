@@ -1,64 +1,61 @@
-import * as React from 'react';
-import {Platform} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {useTheme} from 'styled-components';
+import React from 'react';
+import { Platform } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTheme } from 'styled-components';
 
 import HomeSvg from '../assets/home.svg';
 import CarSvg from '../assets/car.svg';
 import PeopleSvg from '../assets/people.svg';
 
-import {AppStackRoutes} from './app.stack.routes';
+import { AppStackRoutes } from './app.stack.routes';
+import { MyCars } from '../screens/MyCars';
+import { Profile } from '../screens/Profile';
 
-import {Home} from '../screens/Home';
-import {MyCars} from '../screens/MyCars';
+const { Navigator, Screen } = createBottomTabNavigator();
 
-import {RootStackParamList} from '../utils/RootStackParams';
-
-// const {Navigator, Screen} = createBottomTabNavigator<RootStackParamList>();
-const {Navigator, Screen} = createBottomTabNavigator();
-
-export function AppTabRoutes() {
+export function AppTabRoutes(){
   const theme = useTheme();
-  return (
+
+  return(
     <Navigator
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          height: 78,
+      tabBarOptions={{
+        activeTintColor: theme.colors.main,
+        inactiveTintColor: theme.colors.text_detail,
+        showLabel: false,
+        style: {
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          backgroundColor: theme.colors.background_primary,
-        },
-        tabBarActiveTintColor: theme.colors.main,
-        tabBarInactiveTintColor: theme.colors.text_detail,
-      }}>
-      <Screen
+          height: 78,
+          backgroundColor: theme.colors.background_primary
+        }
+      }}
+    >
+      <Screen 
         name="Home"
         component={AppStackRoutes}
         options={{
-          headerShown: false,
-          tabBarIcon: ({color}) => (
+          tabBarIcon: (({ color }) => (
             <HomeSvg width={24} height={24} fill={color} />
-          ),
+          ))
         }}
       />
-      <Screen
+      <Screen 
         name="MyCars"
         component={MyCars}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: (({ color }) => (
             <CarSvg width={24} height={24} fill={color} />
-          ),
+          ))
         }}
       />
-      <Screen
+      <Screen 
         name="Profile"
-        component={Home}
+        component={Profile}
         options={{
-          tabBarIcon: ({color}) => (
-            <PeopleSvg width={24} height={24} fill={color} />
-          ),
-        }}
+          tabBarIcon: (({ color }) => (
+            <PeopleSvg width={24} height={24} fill={color}/>
+          ))
+        }}       
       />
     </Navigator>
-  );
+  )
 }

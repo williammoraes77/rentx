@@ -16,13 +16,15 @@ export default {
     success: '#03B252',
 
     shape: '#E1E1E8',
-    shape_DARK: '#29292E',
-  },
-  fonts: {
-    regular: 'Inter_400Regular',
-    medium: 'Inter_500Medium',
-    semi_bold: 'Inter_600SemiBold',
+    shape_dark: '#29292E'
   },
 
-  
-};
+  fonts: {
+    primary_400: 'Inter_400Regular',
+    primary_500: 'Inter_500Medium',
+
+    secondary_400: 'Archivo_400Regular',
+    secondary_500: 'Archivo_500Medium',
+    secondary_600: 'Archivo_600SemiBold'
+  }
+}
